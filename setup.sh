@@ -63,8 +63,8 @@ link() {
 link "$DOTFILES_DIR/home/.tmux.conf" "$HOME/.tmux.conf"
 link "$DOTFILES_DIR/home/.vimrc" "$HOME/.vimrc"
 
-# Link zsh directory (contains all shell modules)
-link "$DOTFILES_DIR/zsh" "$HOME/zsh"
+# Link .zsh directory (contains all shell modules)
+link "$DOTFILES_DIR/.zsh" "$HOME/.zsh"
 
 # Link config directories
 mkdir -p "$HOME/.config/sesh"
