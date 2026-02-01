@@ -16,6 +16,7 @@ brew "fzf"                # Fuzzy finder
 brew "sesh"               # Tmux session manager
 brew "gum"                # TUI toolkit for shell scripts
 brew "starship"           # zsh CLI visual helper
+brew "atuin"              # Shell history sync & search
 
 # =============================================================================
 # DEVELOPMENT TOOLS
