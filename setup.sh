@@ -13,7 +13,8 @@ log() { echo "=> $*"; }
 # Install Homebrew if not present
 install_homebrew() {
 	if command -v brew &>/dev/null; then
-		log "Homebrew already installed"
+		log "Homebrew already installed, updating..."
+		brew update
 		return
 	fi
 	log "Installing Homebrew..."
@@ -32,7 +33,9 @@ install_packages() {
 		return
 	fi
 	log "Installing packages from Brewfile..."
-	brew bundle --file="$DOTFILES_DIR/Brewfile" --no-lock
+	brew bundle --file="$DOTFILES_DIR/Brewfile" || {
+		log "Warning: brew bundle had errors (non-fatal, continuing)"
+	}
 }
 
 install_homebrew

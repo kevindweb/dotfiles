@@ -104,11 +104,14 @@ cob() {
 }
 
 gbd() {
-  local branch="$1"
-  if [[ -z "$branch" ]]; then
-    echo "Usage: gbd <branch-name>"
+  local input="$1"
+  if [[ -z "$input" ]]; then
+    echo "Usage: gbd <branch-name> (with or without kdeems/ prefix)"
     return 1
   fi
+  
+  # Normalize: strip kdeems/ prefix if provided
+  local branch="${input#kdeems/}"
   
   # Must be in a git repo
   local repo_root repo_name
@@ -120,10 +123,14 @@ gbd() {
   
   local worktree_path="$HOME/Documents/code/worktrees/$repo_name/$branch"
   
-  # Kill tmux session if it exists
+  # Kill tmux session if it exists (try both forms)
   if tmux has-session -t "$branch" 2>/dev/null; then
     tmux kill-session -t "$branch"
     echo "Killed tmux session: $branch"
+  fi
+  if tmux has-session -t "kdeems/$branch" 2>/dev/null; then
+    tmux kill-session -t "kdeems/$branch"
+    echo "Killed tmux session: kdeems/$branch"
   fi
   
   # Remove worktree if it exists
@@ -136,9 +143,9 @@ gbd() {
     echo "Removed worktree: $worktree_path"
   fi
   
-  # Delete local branches (both forms, silently)
+  # Delete local branches (both forms)
   git branch -D "kdeems/$branch" 2>/dev/null && echo "Deleted branch: kdeems/$branch"
-  git branch -D "$branch" 2>/dev/null
+  git branch -D "$branch" 2>/dev/null && echo "Deleted branch: $branch"
   
   # Prune remote refs
   git remote prune origin 2>/dev/null
