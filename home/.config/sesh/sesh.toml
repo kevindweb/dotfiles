@@ -1,0 +1,20 @@
+# sesh session manager configuration
+# https://github.com/joshmedeski/sesh
+
+[default_session]
+startup_command = "nvim"
+
+[[session]]
+name = "dotfiles"
+path = "~/Documents/code/gitlab/dotfiles"
+startup_command = "nvim"
+
+[[session]]
+name = "ai-life"
+path = "~/Documents/code/gitlab/ai-life"
+startup_command = "nvim"
+
+[[session]]
+name = "release-manager"
+path = "~/Documents/code/gitlab/release-manager"
+startup_command = "nvim"

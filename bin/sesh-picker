@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# sesh session picker
+
+set -euo pipefail
+
+if [[ $# -eq 0 ]]; then
+    set -- --config --zoxide
+fi
+
+picker() {
+    sesh connect "$(
+        sesh list --icons "$@" \
+            | gum filter --limit 1 --header "sesh session picker" --placeholder "session" --prompt ' '
+    )"
+}
+
+if [[ -n ${TMUX:-} ]]; then
+    picker "$@"
+    exit $?
+fi
+
+while :; do
+    picker "$@"
+done
