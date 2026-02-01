@@ -14,6 +14,9 @@ export NODE_OPTIONS="--use-openssl-ca"
 export PYTHON=python3
 export CLICOLOR=1
 export LSCOLORS="BxBxhxDxfxhxhxhxhxcxcx"
+export DOTFILES=~/Documents/code/github/dotfiles
+
+alias setup='${DOTFILES}/setup.sh'
 
 # GPG
 GPG_TTY=$(tty)

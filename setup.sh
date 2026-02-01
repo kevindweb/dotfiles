@@ -14,7 +14,7 @@ log() { echo "=> $*"; }
 install_homebrew() {
 	if command -v brew &>/dev/null; then
 		log "Homebrew already installed, updating..."
-		brew update
+		brew update || true
 		return
 	fi
 	log "Installing Homebrew..."
@@ -100,5 +100,8 @@ mkdir -p "$HOME/bin"
 for script in "$DOTFILES_DIR/bin/"*; do
 	[[ -f "$script" ]] && link "$script" "$HOME/bin/$(basename "$script")"
 done
+
+# Link git hooks for this repo
+link "$DOTFILES_DIR/hooks/pre-commit" "$DOTFILES_DIR/.git/hooks/pre-commit"
 
 log "Done! Restart your shell or run: source ~/.zshrc"
