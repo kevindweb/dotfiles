@@ -1,0 +1,15 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+  {
+    "key": "ctrl+cmd+e",
+    "command": "extension.emeraldwalk.enableRunOnSave"
+  },
+  {
+    "key": "ctrl+cmd+r",
+    "command": "extension.emeraldwalk.disableRunOnSave"
+  },
+  {
+    "key": "ctrl+cmd+g",
+    "command": "go.test.coverage"
+  }
+]

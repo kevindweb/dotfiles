@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # Gum CLI theme (Phosphor Green - Old CRT aesthetic)
 export GUM_FILTER_INDICATOR_FOREGROUND="46"
 export GUM_FILTER_PROMPT_FOREGROUND="71"
