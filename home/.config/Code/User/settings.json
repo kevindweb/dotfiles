@@ -1,0 +1,124 @@
+{
+  "editor.rulers": [100],
+  "terminal.integrated.fontFamily": "'FuraMono Nerd Font Mono'",
+  "vim.vimrc.enable": true,
+  "vim.vimrc.path": "$HOME/.vimrc",
+  "vim.smartRelativeLine": true,
+  "editor.lineNumbers": "relative",
+  "diffEditor.codeLens": true,
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": false
+  },
+  "go.buildFlags": ["-tags=integration"],
+  "go.lintTool": "golangci-lint",
+  "go.lintFlags": ["--fast", "--config=./.golangci.yml"],
+  "go.toolsManagement.autoUpdate": true,
+  "redhat.telemetry.enabled": true,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "security.workspace.trust.untrustedFiles": "open",
+  "workbench.list.openMode": "doubleClick",
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[go]": {
+    "editor.insertSpaces": false,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    },
+    "editor.suggest.snippetsPreventQuickSuggestions": false
+  },
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "go.goroot": "/opt/homebrew/opt/go/libexec",
+  "gitlens.views.commitDetails.files.layout": "tree",
+  "[vue]": {
+    "editor.formatOnSave": false
+  },
+  "files.trimTrailingWhitespace": true,
+  "go.coverOnSingleTest": true,
+  "go.coverOnSingleTestFile": true,
+  "go.coverOnTestPackage": true,
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "diffEditor.diffAlgorithm": "advanced",
+  "files.associations": {
+    "RELEASE_NOTES": "plaintext",
+    "*.ts": "typescriptreact"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "editor.codeActionsOnSave": {},
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "diffEditor.experimental.showMoves": true,
+  "[dockerfile]": {
+    "editor.defaultFormatter": "ms-azuretools.vscode-containers"
+  },
+  "gopls": {},
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "explorer.confirmDelete": false,
+  "window.zoomLevel": 1,
+  "python.analysis.typeCheckingMode": "basic",
+  "jupyter.widgetScriptSources": ["jsdelivr.com", "unpkg.com"],
+  "jupyter.themeMatplotlibPlots": true,
+  "gitlens.launchpad.indicator.enabled": false,
+  "remote.SSH.remotePlatform": {
+    "*.gitpod.io": "linux"
+  },
+  "git.openRepositoryInParentFolders": "never",
+  "git.suggestSmartCommit": false,
+  "makefile.configureOnOpen": true,
+  "github.copilot.advanced": {
+    "authProvider": "github"
+  },
+  "chat.commandCenter.enabled": false,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "database-client.autoSync": true,
+  "docker.extension.dockerEngineAvailabilityPrompt": false,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.formatOnSave": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "docker.extension.enableComposeLanguageServer": false,
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+  "workbench.colorTheme": "Default Light Modern",
+  "terminal.integrated.initialHint": false,
+  "terminal.integrated.profiles.osx": {
+    "tmuxoc": {
+      "path": "zsh",
+      "args": ["-i", "-c", "oc-split; zsh"],
+      "icon": "terminal-tmux"
+    }
+  },
+  "terminal.integrated.defaultProfile.osx": "tmuxoc",
+  "window.newWindowDimensions": "maximized"
+}
