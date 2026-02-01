@@ -48,11 +48,13 @@ ta() {
 # UTILITIES
 # =============================================================================
 alias sudo="sudo "
-clc() { fc -ln -1 | awk '{$1=$1}1' | pbcopy; }
 alias c="tr -d '\n' | pbcopy"
 alias path='echo -e ${PATH//:/\\n}'
 alias diff="/opt/homebrew/opt/diffutils/bin/diff"
 alias sed="gsed"
+
+clc() { fc -ln -1 | awk '{$1=$1}1' | pbcopy; }
+
 touchtail() { touch "$1" && tail -f "$1"; }
 
 jwt-decode() {

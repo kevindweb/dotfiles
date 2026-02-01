@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Pre-commit hook: Run linting before allowing commits
+
+set -euo pipefail
+
+echo "Running pre-commit lint..."
+if ! just lint; then
+    echo ""
+    echo "Lint failed. Run 'just fix' to auto-fix formatting issues."
+    exit 1
+fi
