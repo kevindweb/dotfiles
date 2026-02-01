@@ -15,6 +15,7 @@ brew "zoxide"             # Smarter cd command
 brew "fzf"                # Fuzzy finder
 brew "sesh"               # Tmux session manager
 brew "gum"                # TUI toolkit for shell scripts
+brew "starship"           # zsh CLI visual helper
 
 # =============================================================================
 # DEVELOPMENT TOOLS
