@@ -68,7 +68,7 @@ main() {
   else
     repo_root=$(dirname "$git_common_dir")
   fi
-  code -r "$repo_root"
+  code "$repo_root"
 }
 
 master() {
@@ -217,7 +217,7 @@ co() {
   fi
 
   # Open VS Code (tmuxoc profile will handle tmux via oc-split)
-  code -r "$worktree_path"
+  code "$worktree_path"
 }
 
 commit() {
