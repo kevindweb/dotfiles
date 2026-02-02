@@ -7,7 +7,6 @@ alias gs="git status"
 alias ga="git add"
 alias gaa="git add -A"
 alias gd="git diff"
-# gb is now a function - see below
 alias gp="git pull"
 alias gpf="git push -f"
 alias gf="git forget"
@@ -53,22 +52,24 @@ rbm() {
   git rebase "$branch"
 }
 
-# Open VS Code at the main repo root (not worktree) showing the main/master branch
+# Switch to main/master branch (normal checkout) or open main repo in VS Code (worktree)
 main() {
   local git_common_dir repo_root
   git_common_dir=$(git rev-parse --git-common-dir 2>/dev/null) || {
     echo "Error: Not in a git repository"
     return 1
   }
-  # Get the repo root (parent of .git dir)
-  # In worktree: git_common_dir is full path like /path/to/repo/.git
-  # In main repo: git_common_dir is just ".git"
+
   if [[ "$git_common_dir" == ".git" ]]; then
-    repo_root=$(git rev-parse --show-toplevel)
+    # Normal checkout - switch to main/master branch
+    local branch
+    branch=$(git_main_branch) || return 1
+    git checkout "$branch"
   else
+    # Worktree - open VS Code at main repo
     repo_root=$(dirname "$git_common_dir")
+    code "$repo_root"
   fi
-  code "$repo_root"
 }
 
 master() {
@@ -198,25 +199,39 @@ co() {
   local worktree_path="$worktree_base/$branch"
   local full_branch="kdeems/$branch"
 
-  # Create worktree if it doesn't exist
-  if [[ ! -d "$worktree_path" ]]; then
-    mkdir -p "$worktree_base"
-
-    # Determine base branch (main or master)
-    local base_branch
-    base_branch=$(git_main_branch) || return 1
-
-    # Create the worktree with new branch
-    git worktree add -b "$full_branch" "$worktree_path" "$base_branch" || {
-      echo "Error: Failed to create worktree"
-      return 1
-    }
-    echo "Created worktree: $worktree_path (branch: $full_branch)"
-  else
+  # 1. If worktree exists, use it
+  if [[ -d "$worktree_path" ]]; then
     echo "Worktree exists: $worktree_path"
+    code "$worktree_path"
+    return 0
   fi
 
-  # Open VS Code (tmuxoc profile will handle tmux via oc-split)
+  # 2. If branch exists locally, just checkout
+  if git show-ref -q --verify "refs/heads/$full_branch"; then
+    git checkout "$full_branch"
+    return 0
+  fi
+  if git show-ref -q --verify "refs/heads/$branch"; then
+    git checkout "$branch"
+    return 0
+  fi
+
+  # 3. Branch doesn't exist - create worktree with new branch
+  #    Sanitize directory name: replace . and / with - (tmux-safe)
+  local sanitized_branch="${branch//[.\/]/-}"
+  local worktree_path="$worktree_base/$sanitized_branch"
+
+  mkdir -p "$worktree_base"
+
+  local base_branch
+  base_branch=$(git_main_branch) || return 1
+
+  git worktree add -b "$full_branch" "$worktree_path" "$base_branch" || {
+    echo "Error: Failed to create worktree"
+    return 1
+  }
+  echo "Created worktree: $worktree_path (branch: $full_branch)"
+
   code "$worktree_path"
 }
 
