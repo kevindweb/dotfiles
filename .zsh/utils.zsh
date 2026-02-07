@@ -58,5 +58,5 @@ clc() { fc -ln -1 | awk '{$1=$1}1' | pbcopy; }
 touchtail() { touch "$1" && tail -f "$1"; }
 
 jwt-decode() {
-  cut -d. -f1,2 <<< "$1" | tr '.' '\n' | base64 --decode | jq
+  cut -d. -f1,2 <<<"$1" | tr '.' '\n' | base64 --decode | jq
 }

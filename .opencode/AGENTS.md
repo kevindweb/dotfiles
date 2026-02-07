@@ -25,8 +25,17 @@
 - `home/.config/Code/User/settings.json` - VS Code settings
 - `home/.tmux.conf` - Tmux configuration
 
+### Post-Task Verification (MANDATORY)
+
+After completing any code changes, ALWAYS run:
+
+1. `just lint` — Check for lint errors (prettier + shellcheck)
+2. If lint fails, run `just fix` to auto-fix formatting issues, then re-run `just lint`
+3. Do NOT consider the task complete until `just lint` passes
+
 ### DO NOT:
 
 - Grep in `/`, `/usr`, `/etc`, or any system directories
 - Search outside the project unless explicitly asked
 - Assume files are in standard system locations
+- Skip `just lint` after making changes

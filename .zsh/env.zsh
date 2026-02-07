@@ -15,6 +15,8 @@ export PYTHON=python3
 export CLICOLOR=1
 export LSCOLORS="BxBxhxDxfxhxhxhxhxcxcx"
 export DOTFILES=~/Documents/code/github/dotfiles
+export HOMEBREW_AUTO_UPDATE_SECS=172800
+export HOMEBREW_NO_ENV_HINTS=1
 
 alias setup='${DOTFILES}/setup.sh'
 

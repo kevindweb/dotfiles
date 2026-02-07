@@ -8,9 +8,11 @@ lint-prettier:
 
 lint-shellcheck:
     find . -type f \( -name "*.sh" -o -name "*.zsh" \) -exec shellcheck {} +
+    find . -type f \( -name "*.sh" -o -name "*.zsh" \) -exec shfmt -d -i 2 {} +
 
 fix:
     prettier --write "**/*.{json,yaml,yml,md}"
+    find . -type f \( -name "*.sh" -o -name "*.zsh" \) -exec shfmt -w -i 2 {} +
 
 # =============================================================================
 # macOS storage cleanup recipes
