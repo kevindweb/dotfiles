@@ -9,6 +9,7 @@ brew "node"               # JavaScript runtime
 brew "pnpm"               # Fast, disk space efficient package manager
 brew "just"               # Command runner (like make but better)
 brew "shellcheck"         # Shell script linter
+brew "shfmt"              # Shell script formatter
 brew "prettier"           # Code formatter
 brew "tmux"               # Terminal multiplexer
 brew "zoxide"             # Smarter cd command
