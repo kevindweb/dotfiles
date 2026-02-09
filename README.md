@@ -23,7 +23,7 @@ Add this to your `~/.zshrc` to source the dotfiles:
 
 ```bash
 if [[ -d "$HOME/.zsh" ]]; then
-  for file in "$HOME"/.zsh/**/*.zsh(N); do
+  for file in "$HOME"/.zsh/***/*.zsh(N); do
     source "$file"
   done
 else

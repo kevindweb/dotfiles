@@ -184,6 +184,12 @@ co() {
     return 1
   fi
 
+  # If args contain "--", pass through directly to git checkout (file checkout, not branch switch)
+  if [[ " $* " == *" -- "* ]]; then
+    git checkout "$@"
+    return $?
+  fi
+
   # Normalize: strip kdeems/ prefix if provided
   local branch="${input#kdeems/}"
 

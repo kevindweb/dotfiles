@@ -115,7 +115,7 @@
   "terminal.integrated.profiles.osx": {
     "tmuxoc": {
       "path": "zsh",
-      "args": ["-i", "-c", "oc-split; zsh"],
+      "args": ["-i", "-c", "source ~/.zshrc 2>/dev/null; oc-split; zsh"],
       "icon": "terminal-tmux"
     }
   },
