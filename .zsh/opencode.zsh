@@ -16,6 +16,6 @@ oc-split() {
   # Create new session with opencode split
   tmux new-session -d -s "$name" -c "$(pwd)"
   tmux split-window -h -t "$name" "opencode"
-  tmux select-pane -t "$name:0.0"
+  tmux select-pane -t "$name:.{left}"
   tmux attach -t "$name"
 }
