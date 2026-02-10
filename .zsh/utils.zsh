@@ -44,6 +44,14 @@ ta() {
   fi
 }
 
+td() {
+  if [ -n "$TMUX" ]; then
+    tmux kill-session -t "$(tmux display-message -p '#S')"
+  else
+    echo "not in tmux session"
+  fi
+}
+
 # =============================================================================
 # UTILITIES
 # =============================================================================
@@ -52,6 +60,7 @@ alias c="tr -d '\n' | pbcopy"
 alias path='echo -e ${PATH//:/\\n}'
 alias diff="/opt/homebrew/opt/diffutils/bin/diff"
 alias sed="gsed"
+alias jsut="just" # because I mess this up
 
 clc() { fc -ln -1 | awk '{$1=$1}1' | pbcopy; }
 

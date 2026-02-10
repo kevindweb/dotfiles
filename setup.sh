@@ -55,6 +55,7 @@ link() {
   if [[ -L "$dest" ]]; then
     rm "$dest"
   fi
+  mkdir -p "$(dirname "$dest")"
   log "Linking $dest -> $src"
   ln -s "$src" "$dest"
 }
