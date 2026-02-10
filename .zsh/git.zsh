@@ -11,6 +11,7 @@ alias gp="git pull"
 alias gpf="git push -f"
 alias gf="git forget"
 alias fa="git fetch --all"
+alias gco="git checkout" # use co for worktree development
 alias newbranch="git checkout -b"
 alias branches="git branch -v"
 alias staging="git checkout staging"
