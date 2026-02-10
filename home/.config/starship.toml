@@ -1,0 +1,2 @@
+# pyenv shims exceed the default 500ms timeout
+command_timeout = 1000

@@ -70,6 +70,7 @@ link "$DOTFILES_DIR/.zsh" "$HOME/.zsh"
 # Link config directories
 mkdir -p "$HOME/.config/sesh"
 link "$DOTFILES_DIR/home/.config/sesh/sesh.toml" "$HOME/.config/sesh/sesh.toml"
+link "$DOTFILES_DIR/home/.config/starship.toml" "$HOME/.config/starship.toml"
 
 # =============================================================================
 # VS CODE
