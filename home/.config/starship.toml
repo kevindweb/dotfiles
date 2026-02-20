@@ -1,2 +1,24 @@
-# pyenv shims exceed the default 500ms timeout
-command_timeout = 1000
+format = """
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$golang\
+$rust\
+$python\
+$nodejs\
+$kubernetes\
+$cmd_duration\
+$line_break\
+$character"""
+
+command_timeout = 500
+
+[git_status]
+# In repos with large vendor/ dirs, this prevents scanning submodules
+ignore_submodules = true
+
+[directory]
+# Show only last 3 path components — less parent-dir scanning
+truncation_length = 3
+truncate_to_repo = true

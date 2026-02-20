@@ -25,6 +25,14 @@ GPG_TTY=$(tty)
 export GPG_TTY
 
 # =============================================================================
+# PYENV - shell integration (enables `pyenv shell`, `pyenv local`, etc.)
+# =============================================================================
+# PYENV_ROOT and PATH are set in ~/.zprofile; this adds the shell function layer
+if command -v pyenv &>/dev/null; then
+  eval "$(pyenv init - --no-rehash)"
+fi
+
+# =============================================================================
 # PROMPT (starship)
 # =============================================================================
 eval "$(starship init zsh)"

@@ -213,7 +213,25 @@ co() {
     return 0
   fi
 
-  # 2. If branch exists locally, just checkout
+  # 2. If branch is already checked out in any worktree, open it
+  #    (handles worktree dir name not matching branch name)
+  local existing_wt
+  existing_wt=$(git worktree list --porcelain | awk '
+    /^worktree / { wt=substr($0, 10) }
+    /^branch /   { print wt " " substr($0, 8) }
+  ' | while read -r wt_path wt_branch; do
+    if [[ "$wt_branch" == "refs/heads/$full_branch" || "$wt_branch" == "refs/heads/$branch" ]]; then
+      echo "$wt_path"
+      break
+    fi
+  done)
+  if [[ -n "$existing_wt" ]]; then
+    echo "Branch already in worktree: $existing_wt"
+    code "$existing_wt"
+    return 0
+  fi
+
+  # 3. If branch exists locally, just checkout
   if git show-ref -q --verify "refs/heads/$full_branch"; then
     git checkout "$full_branch"
     return 0
@@ -223,7 +241,7 @@ co() {
     return 0
   fi
 
-  # 3. Branch doesn't exist - create worktree with new branch
+  # 4. Branch doesn't exist - create worktree with new branch
   #    Sanitize directory name: replace . and / with - (tmux-safe)
   local sanitized_branch="${branch//[.\/]/-}"
   local worktree_path="$worktree_base/$sanitized_branch"
