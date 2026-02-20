@@ -2,7 +2,9 @@
 # =============================================================================
 # HOMEBREW (must be first for other tools to work)
 # =============================================================================
-eval "$(/opt/homebrew/bin/brew shellenv)"
+# Only run brew shellenv if HOMEBREW_PREFIX isn't already set (login shells set it via .zprofile)
+# brew shellenv spawns a Ruby process (~1s) - avoid running it twice
+[[ -z "$HOMEBREW_PREFIX" ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
 # shellcheck source=/dev/null
 [[ -z "$HOMEBREW_PREFIX" ]] && source ~/.zprofile
 # shellcheck source=/dev/null
