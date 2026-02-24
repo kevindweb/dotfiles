@@ -178,6 +178,33 @@ gbd() {
 
 gpd() { git push -d origin "$1"; }
 
+# CoW clone gitignored files from source repo into a new worktree.
+# Uses APFS copy-on-write (cp -Rc) so cloning a 10GB target/ dir is instant.
+_worktree_clone_ignored() {
+  local src="$1" dest="$2"
+
+  local items=()
+  while IFS= read -r item; do
+    [[ -n "$item" ]] && items+=("$item")
+  done < <(git -C "$src" ls-files --others --ignored --exclude-standard --directory)
+
+  [[ ${#items[@]} -eq 0 ]] && return
+
+  echo "CoW cloning ${#items[@]} ignored entries..."
+  for item in "${items[@]}"; do
+    local clean="${item%/}"
+    if [[ -d "$src/$clean" ]]; then
+      mkdir -p "$(dirname "$dest/$clean")"
+      cp -Rc "$src/$clean" "$dest/$clean"
+      echo "  dir: $clean/"
+    elif [[ -f "$src/$clean" ]]; then
+      mkdir -p "$(dirname "$dest/$clean")"
+      cp -c "$src/$clean" "$dest/$clean"
+      echo "  file: $clean"
+    fi
+  done
+}
+
 co() {
   local input="$1"
   if [[ -z "$input" ]]; then
@@ -257,6 +284,7 @@ co() {
   }
   echo "Created worktree: $worktree_path (branch: $full_branch)"
 
+  _worktree_clone_ignored "$repo_root" "$worktree_path"
   code "$worktree_path"
 }
 
