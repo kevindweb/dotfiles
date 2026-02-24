@@ -37,3 +37,8 @@ brew "difftastic"         # Structural diff tool
 # =============================================================================
 cask "visual-studio-code" # Code editor
 # cask "docker"           # Container platform (uncomment if needed)
+
+# =============================================================================
+# AI / AGENT TOOLS
+# =============================================================================
+brew "beads"
