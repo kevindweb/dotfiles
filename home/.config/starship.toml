@@ -12,7 +12,7 @@ $cmd_duration\
 $line_break\
 $character"""
 
-command_timeout = 500
+command_timeout = 1000
 
 [git_status]
 # In repos with large vendor/ dirs, this prevents scanning submodules
