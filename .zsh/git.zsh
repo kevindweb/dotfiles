@@ -80,7 +80,7 @@ master() {
 changes() {
   local branch
   branch=$(git_main_branch) || return 1
-  git diff --stat "$branch".. -- . ':!vendor'
+  git diff --stat "$branch".. -- . ':!vendor/**' ':!**/vendor/**'
 }
 
 gamend() {
