@@ -130,6 +130,13 @@ cob() {
 
 gbd() {
   local input="$1"
+  if [[ -z "$input" ]]; then
+    echo "Usage: gbd <branch-name> (with or without kdeems/ prefix)"
+    return 1
+  fi
+
+  # Normalize: strip kdeems/ prefix if provided
+  local branch="${input#kdeems/}"
 
   # Must be in a git repo
   local repo_root repo_name
@@ -138,16 +145,6 @@ gbd() {
     return 1
   }
   repo_name=$(basename "$repo_root")
-
-  # No branch specified - just prune stale remote refs
-  if [[ -z "$input" ]]; then
-    echo "No branch specified, pruning stale remote refs..."
-    git remote prune origin
-    return 0
-  fi
-
-  # Normalize: strip kdeems/ prefix if provided
-  local branch="${input#kdeems/}"
 
   local worktree_path="$HOME/Documents/code/worktrees/$repo_name/$branch"
 
@@ -175,11 +172,7 @@ gbd() {
   git branch -D "kdeems/$branch" 2>/dev/null && echo "Deleted branch: kdeems/$branch"
   git branch -D "$branch" 2>/dev/null && echo "Deleted branch: $branch"
 
-  # Delete remote branches (noop if they don't exist)
-  git push -d origin "kdeems/$branch" 2>/dev/null && echo "Deleted remote branch: kdeems/$branch"
-  git push -d origin "$branch" 2>/dev/null && echo "Deleted remote branch: $branch"
-
-  # Prune stale remote refs
+  # Prune remote refs
   git remote prune origin 2>/dev/null
 }
 
