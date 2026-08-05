@@ -4,7 +4,14 @@
 # =============================================================================
 # Only run brew shellenv if HOMEBREW_PREFIX isn't already set (login shells set it via .zprofile)
 # brew shellenv spawns a Ruby process (~1s) - avoid running it twice
-[[ -z "$HOMEBREW_PREFIX" ]] && eval "$(/opt/homebrew/bin/brew shellenv)"
+if [[ -z "$HOMEBREW_PREFIX" ]]; then
+  # Work around brew's cwd readability check: run shellenv from $HOME if cwd is unreadable
+  if [[ -r "${PWD}" ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  else
+    eval "$(cd "$HOME" && /opt/homebrew/bin/brew shellenv)"
+  fi
+fi
 # shellcheck source=/dev/null
 [[ -z "$HOMEBREW_PREFIX" ]] && source ~/.zprofile
 # shellcheck source=/dev/null

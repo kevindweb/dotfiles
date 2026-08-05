@@ -22,7 +22,12 @@ install_homebrew() {
 
   # Add brew to PATH for this session (macOS arm64)
   if [[ -f /opt/homebrew/bin/brew ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+    # Run shellenv from $HOME if cwd is unreadable to work around brew's cwd check
+    if [[ -r "${PWD}" ]]; then
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+    else
+      eval "$(cd "$HOME" && /opt/homebrew/bin/brew shellenv)"
+    fi
   fi
 }
 

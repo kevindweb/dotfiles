@@ -93,7 +93,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.formatOnSave": true,
-  "typescript.updateImportsOnFileMove.enabled": "always",
+  "ts.updateImportsOnFileMove.enabled": "always",
   "docker.extension.enableComposeLanguageServer": false,
   "[dockercompose]": {
     "editor.insertSpaces": true,
@@ -110,7 +110,7 @@
     "editor.defaultFormatter": "redhat.vscode-yaml"
   },
   "workbench.secondarySideBar.defaultVisibility": "hidden",
-  "workbench.colorTheme": "Default Light Modern",
+  "workbench.preferredLightColorTheme": "Light Modern",
   "terminal.integrated.initialHint": false,
   "terminal.integrated.profiles.osx": {
     "tmuxoc": {
@@ -120,5 +120,8 @@
     }
   },
   "terminal.integrated.defaultProfile.osx": "tmuxoc",
-  "window.newWindowDimensions": "maximized"
+  "window.newWindowDimensions": "maximized",
+  "json.schemaDownload.trustedDomains": {
+    "https://unpkg.com/": true
+  }
 }
